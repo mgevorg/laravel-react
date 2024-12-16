@@ -5,7 +5,8 @@ namespace Services\AuthService\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Services\AuthService\Contracts\AuthServiceInterface;
-use Services\AuthService\Http\Requests\UserAuthRequest;
+use Services\AuthService\Http\Requests\UserLoginRequest;
+use Services\AuthService\Http\Requests\UserRegisterRequest;
 use Services\AuthService\Http\DTOs\UserAuthDTO;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,26 +20,12 @@ class AuthController extends Controller
     /**
      * Get a JWT via given credentials.
      *
-     * @param UserAuthRequest $request
+     * @param UserRegisterRequest $request
      * @return JsonResponse
      */
-    public function login(UserAuthRequest $request): JsonResponse
+    public function login(UserLoginRequest $request)
     {
-        $credentials = $request->only('email', 'password');
-        if (!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        return $this->respondWithToken($token);
+        $authUserDTO = new UserAuthDTO($request->validated());
+        return app('services.auth-service')->login($authUserDTO);
     }
-
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
-        ]);
-    }
-
 }

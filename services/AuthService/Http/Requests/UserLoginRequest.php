@@ -4,7 +4,7 @@ namespace Services\AuthService\Http\Requests;
 
 use Services\AuthService\Models\AuthUser;
 
-class UserAuthRequest extends BaseRequest
+class UserLoginRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class UserAuthRequest extends BaseRequest
     public function rules(): array
     {
         return [
-//            'email' => 'required:users|email',
-//            'password' => 'required'
+            'email' => 'required:users|email',
+            'password' => 'required',
         ];
     }
 }

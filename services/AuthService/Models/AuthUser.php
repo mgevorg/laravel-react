@@ -55,4 +55,12 @@ class AuthUser extends User implements JWTSubject
     {
         return [];
     }
+
+    /**
+     * Automatically hash the password when setting it.
+     */
+    public function setPasswordAttribute($value): void
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 }
