@@ -14,7 +14,7 @@ class UserRepository implements UserRepositoryInterface
         //
     }
 
-    public function create(UserRegisterDTO $dto)
+    public function create(UserRegisterDTO $dto) : AuthUser
     {
         $user = AuthUser::create([
             'name' => $dto->name,

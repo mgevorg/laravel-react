@@ -3,6 +3,8 @@
 namespace Services\AuthService\Http\Requests;
 
 use Services\AuthService\Models\AuthUser;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UserRegisterRequest extends BaseRequest
 {
@@ -23,7 +25,22 @@ class UserRegisterRequest extends BaseRequest
     {
         return [
             'email' => 'required|email|unique:users,email',
+            'name' => 'required|string|max:100',
             'password' => 'required|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/',
         ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  Validator  $validator
+     * @throws HttpResponseException
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success' => false,
+            'errors' => $validator->errors(),
+        ], 422));
     }
 }
