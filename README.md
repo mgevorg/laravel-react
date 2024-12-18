@@ -24,3 +24,5 @@ Make sure that you have installed Docker(and WSL enabled for Windows)
 - ./vendor/bin/sail up
 - ./vendor/bin/sail artisan migrate
 - ./vendor/bin/sail artisan jwt:secret
+
+## While running any npm command under sail, run then like ./vendor/bin/sail npm i
