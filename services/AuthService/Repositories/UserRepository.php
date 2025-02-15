@@ -11,7 +11,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function findById($id)
     {
-        //
+        
     }
 
     public function create(UserRegisterDTO $dto) : AuthUser
