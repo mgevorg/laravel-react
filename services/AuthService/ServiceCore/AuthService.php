@@ -16,7 +16,7 @@ class AuthService implements AuthServiceInterface
     public function __construct(
         private UserRepository $userRepository)
     {
-        //
+
     }
 
     public function login(UserAuthDTO $userAuthDto)
