@@ -6,7 +6,6 @@ use Illuminate\Http\JsonResponse;
 use Services\AuthService\Contracts\AuthServiceInterface;
 use Services\AuthService\Http\DTOs\UserAuthDTO;
 use Services\AuthService\Http\DTOs\UserRegisterDTO;
-
 use Services\AuthService\Models\AuthUser;
 use Services\AuthService\Repositories\UserRepository;
 
