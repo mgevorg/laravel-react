@@ -7,8 +7,9 @@
         <title>Laravel</title>
                 
 
-
         
+
+
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
